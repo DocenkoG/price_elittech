@@ -1,3 +1,7 @@
 import os
 
-print('Вызвана программа elittecg_downLoader')
+
+
+def download():
+    print('Вызвана программа elittech_downLoad')
+    return True

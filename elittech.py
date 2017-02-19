@@ -7,31 +7,11 @@ import io
 import sys
 import configparser
 import time
-
+import elittech_downloader
+import elittech_converter
 
 global log
 global myname
-
-def config_read():
-   global myname
-   global mydir
-   global vendors
- 
-   cfgFName = os.path.join( mydir, myname + '.cfg')
-   config = configparser.ConfigParser()
-   if os.path.exists(cfgFName):   
-      config.read( cfgFName)
-   else : 
-      print('Не найден файл конфигурации: '+ cfgFName)
-      exit(3)
- 
-   # в разделе [VENDORS] находится список интересующих нас поставщиков
-   temp_list = config.options('VENDORS')
-   print(temp_list)
-   vendors=[]
-   for vName in temp_list :
-      if (1 == config.get('VENDORS', vName)) :
-         vendors.append(vName)
 
 
 
@@ -56,34 +36,8 @@ def main( ):
     make_loger()
     log.debug(myname +', Begin main.')
 
-    price = Vendor()
-    if  price.download() :
-        price.convert2csv()
-
-
-
-    # Прочитать конфигурацию из файла
-    cfg = config_read()
-   
-
-
-
-class Vendor(object):
-    """Объект поставщика, прайс которого мы скачиваем с сайта. """
-    def __init__(self):
-        self.orgName   = myname
-
-
-
-    def download(self):
-        log.debug('begin method Vendor.dowmload')
-        return True
-
-
-
-    def convert2csv(self):
-        log.debug('begin method Vendor.convert2csv')
-
+    if  elittech_downloader.download() :
+        elittech_converter.convert2csv()
 
 
 
