@@ -36,8 +36,8 @@ def main( ):
     make_loger()
     log.debug(myname +', Begin main.')
 
-    if  elittech_downloader.download() :
-        elittech_converter.convert2csv()
+    if  elittech_downloader.download( myname ) :
+        elittech_converter.convert2csv( myname )
 
 
 
