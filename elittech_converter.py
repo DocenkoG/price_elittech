@@ -135,10 +135,11 @@ def convert2csv( myname ):
         #   loger.debug('Нераспознана строка: <' + sh.cell(i, out_columns_j['код']-1).value.encode('cp1251') + '>' )
     log.info('Обработано %s строк прайса.' % line_qty ) 
     
-    f2 = open( FilenameOut, 'w', encoding='utf-8')
-    data = ',\n'.join(ssss) +','
+    f2 = open( FilenameOut, 'w', encoding='cp1251')
     f2.write(strHeader  + ',\n')
-    #dddd = data.encode('cp1251')
+    data = ',\n'.join(ssss) +','
+    dddd = data.encode(encoding='cp1251', errors='replace')
+    data = dddd.decode(encoding='cp1251')
     f2.write(data)
     f2.close()
 
@@ -245,6 +246,6 @@ def config_read( myname ):
 
 
 def quoted(sss):
-    if (',' in sss) or ('"' in sss)  : # and not(sss[0]=='"' and sss[-1]=='"') :
+    if ((',' in sss) or ('"' in sss) or ('\n' in sss))  and not(sss[0]=='"' and sss[-1]=='"') :
         sss = '"'+sss.replace('"','""')+'"'
     return sss
