@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import os
 import os.path
 import logging
@@ -54,7 +55,7 @@ def convert2csv( myname ):
     line_qty = 0
     log.debug('   На ней строк  '+ str(sh.nrows))
                                                              # цикл по строкам файла
-    for i in range(0,  40): #  sh.nrows) :
+    for i in range(0,   sh.nrows) :
         line_qty += 1
         xfx = sh.cell_xf_index(i, colGrp-1)
         xf  = book.xf_list[xfx]
@@ -134,9 +135,10 @@ def convert2csv( myname ):
         #   loger.debug('Нераспознана строка: <' + sh.cell(i, out_columns_j['код']-1).value.encode('cp1251') + '>' )
     log.info('Обработано %s строк прайса.' % line_qty ) 
     
-    f2 = open( FilenameOut, 'w')
+    f2 = open( FilenameOut, 'w', encoding='utf-8')
     data = ',\n'.join(ssss) +','
     f2.write(strHeader  + ',\n')
+    #dddd = data.encode('cp1251')
     f2.write(data)
     f2.close()
 
