@@ -4,11 +4,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 import unittest, time, re
+import os
 
 class Elittech(unittest.TestCase):
     def setUp(self):
         ffprofile = webdriver.FirefoxProfile()
-        ffprofile.set_preference("browser.download.dir", "C:\\Prices\\_downloads")
+        ffprofile.set_preference("browser.download.dir", os.getcwd()+'\\tmp')
         ffprofile.set_preference("browser.download.folderList",2);
         ffprofile.set_preference("browser.helperApps.neverAsk.saveToDisk","application/xls,application/octet-stream,application/vnd.ms-excel,application/x-excel,application/x-msexcel,application/excel")
         self.driver = webdriver.Firefox(ffprofile)
