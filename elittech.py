@@ -33,7 +33,7 @@ def main( ):
     global  mydir
    
     make_loger()
-    log.debug(myname +', Begin main.')
+    log.info('------------  '+myname +'  ------------')
 
     if  elittech_downloader.download( myname ) :
         elittech_converter.convert2csv( myname )
@@ -45,6 +45,7 @@ if __name__ == '__main__':
     global  mydir
     myname   = os.path.basename(os.path.splitext(sys.argv[0])[0])
     mydir    = os.path.dirname (sys.argv[0])
+    if ('' != mydir) : os.chdir(mydir)
     main( )
  
 #os.system(r'c:\prices\_scripts\remove_tmp_profiles.cmd')

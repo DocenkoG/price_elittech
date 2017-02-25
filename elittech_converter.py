@@ -74,18 +74,18 @@ def convert2csv( myname ):
         print( 'name=', font.name)
         print( 'Строка', i, sh.cell(i, in_columns_j['код']-1).value)
         '''
-        if (fonti == HeaderFonti) :                          # Заголовок таблицы
+        if (fonti == HeaderFonti) :                                # Заголовок таблицы
             continue
-        if (fonti == BrandFonti) :                           # брэнд
+        if (fonti == BrandFonti) :                                 # брэнд
             brandName = quoted(sh.cell(i,colGrp-1).value) 
             continue
-        if (fonti in ( GrpFonti, SubGrpFonti)):              # Группа или подгруппа
+        if (fonti in ( GrpFonti, SubGrpFonti)):                    # Группа или подгруппа
             tmpName = quoted(sh.cell(i,colGrp-1).value)   
-            if tmpName[1] in '0123456789':                   # да, группа                   
+            if tmpName[1] in '0123456789':                         # да, группа                   
                 grpName = tmpName         
                 subGrpName = ''
                 brandName = ''
-            else :                                           # нет, подгруппа
+            else :                                                 # нет, подгруппа
                 subGrpName = tmpName         
                 brandName = ''
             continue
@@ -94,12 +94,12 @@ def convert2csv( myname ):
             ('' == sh.cell(i, in_columns_j['код']-1).value ) :     # Пустая строка (нет кода или цены)
             continue
 
-        else :                                          # Информационная строка
-            sss = []                                    # формируемая строка для вывода в файл
+        else :                                                     # Информационная строка
+            sss = []                                               # формируемая строка для вывода в файл
             for strname in out_columns_names :
                 if strname in out_columns_j :
                     #
-                    #                                   берем значение из соответствующей ячейки файла
+                    #                                              берем значение из соответствующей ячейки файла
                     j = out_columns_j[strname]-1 
                     cell = sh.cell(i, j)
                     cellType  = cell.ctype
@@ -133,7 +133,7 @@ def convert2csv( myname ):
             ssss.append(','.join(sss))
         #else :
         #   loger.debug('Нераспознана строка: <' + sh.cell(i, out_columns_j['код']-1).value.encode('cp1251') + '>' )
-    log.info('Обработано %s строк прайса.' % line_qty ) 
+    log.info('На странице %s обработано %s строк прайса.' % (SheetName, line_qty) ) 
     
     f2 = open( FilenameOut, 'w', encoding='cp1251')
     f2.write(strHeader  + ',\n')

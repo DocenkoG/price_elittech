@@ -40,7 +40,7 @@ def download( myname ):
             new_name = os.path.splitext(new_file)[0]
             DnewFile = os.path.join( pathDwnld,new_file)
             new_file_date = os.path.getmtime(DnewFile)
-            log.debug( 'Скачанный файл ' +DnewFile + ' имеет дату ' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(new_file_date) ) )
+            log.info( 'Скачанный файл ' +DnewFile + ' имеет дату ' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(new_file_date) ) )
             if new_ext == '.zip':                                                       # Архив. Обработка не завершена
                 log.debug( 'Zip-архив. Разархивируем.')
                 work_dir = os.getcwd()                                                  
