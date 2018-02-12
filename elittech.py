@@ -116,6 +116,9 @@ def convert_excel2csv(cfg):
     recOut  ={}
     ssss = []
     line_qty = 0
+    grpName     = ''
+    subGrpName  = ''
+    brandName   = ''
     log.debug('   На ней строк  '+ str(sheet.nrows))
     HeaderFonti = cfg.get('grp_properties','HeaderFonti')
     BrandFonti  = cfg.get('grp_properties','BrandFonti')
@@ -163,6 +166,9 @@ def convert_excel2csv(cfg):
                         shablon = str(round(vvv1 * vvv2, 2))
                     recOut[outColName] = shablon.strip()
 
+                recOut['группа'] = grpName
+                recOut['подгруппа'] = subGrpName
+                recOut['бренд'] = brandName
                 csvWriter.writerow(recOut)
     
         except Exception as e:
