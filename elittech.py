@@ -169,6 +169,9 @@ def convert_excel2csv(cfg):
                 recOut['группа'] = grpName
                 recOut['подгруппа'] = subGrpName
                 recOut['бренд'] = brandName
+                if len(recOut['код']) > 50:
+                    print('>50<', recOut['код'])
+                    recOut['код'] = nameToId(recOut['код'])
                 csvWriter.writerow(recOut)
     
         except Exception as e:
