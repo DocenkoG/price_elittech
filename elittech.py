@@ -89,8 +89,8 @@ def convert_excel2csv(cfg):
         print(ccc.font.name, ccc.font.sz, ccc.font.b, ccc.font.i, ccc.font.color.rgb, '------', ccc.fill.fgColor.rgb)
         print('------')
     '''
-    '''                                     # Блок проверки свойств для распознавания групп      XLS                                  
-    for i in range(0, 75):                                                         
+    '''                                     # Блок проверки свойств для распознавания групп      XLS
+    for i in range(0, 177):
         xfx = sheet.cell_xf_index(i, 0)
         xf  = book.xf_list[xfx]
         bgci  = xf.background.pattern_colour_index
@@ -112,7 +112,6 @@ def convert_excel2csv(cfg):
         print( 'name=', font.name)
     return
     '''
-
     recOut  ={}
     ssss = []
     line_qty = 0
@@ -132,12 +131,12 @@ def convert_excel2csv(cfg):
             impValues = getXlsString(sheet, i, in_cols_j)
             xfx = sheet.cell_xf_index(i, colGrp-1)
             xf  = book.xf_list[xfx]
-            bgcx  = xf.background.pattern_colour_index
+            bgci  = xf.background.pattern_colour_index
             fonti = xf.font_index
             if (fonti == HeaderFonti) :                                # Заголовок таблицы
                 continue
-            if (fonti == BrandFonti) :                                 # брэнд
-                brandName = quoted(sh.cell(i,colGrp-1).value) 
+            if (bgci == 29):                                           # брэнд
+                brandName = quoted(sheet.cell(i,colGrp-1).value)
                 continue
             if (fonti in ( GrpFonti, SubGrpFonti)):                    # Группа или подгруппа
                 tmpName = quoted(sh.cell(i,colGrp-1).value)   
