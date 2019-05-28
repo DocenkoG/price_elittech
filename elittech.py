@@ -9,7 +9,7 @@ import time
 import shutil
 import openpyxl                      # Для .xlsx
 #import xlrd                          # для .xls
-from   price_tools import getCellXlsx, getCell, quoted, dump_cell, currencyType, openX, sheetByName
+from   price_tools import getCellXlsx, getCell, quoted, currencyType, openX, nameToId
 import csv
 import requests, lxml.html
 
@@ -170,7 +170,6 @@ def convert_excel2csv(cfg):
                 recOut['подгруппа'] = subGrpName
                 recOut['бренд'] = brandName
                 if len(recOut['код']) > 50:
-                    print('>50<', recOut['код'])
                     recOut['код'] = nameToId(recOut['код'])
                 csvWriter.writerow(recOut)
     
